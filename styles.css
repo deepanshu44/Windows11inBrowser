@@ -1,0 +1,704 @@
+:root {
+    --primary-color: #0078d7;
+    --taskbar-color: rgba(255, 255, 255, 0.8);
+    --menu-bg: rgba(255, 255, 255, 0.85);
+    --card-bg: rgba(255, 255, 255, 0.6);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-image: url('https://cdnjs.cloudflare.com/ajax/libs/jquery.mb.YTPlayer/3.3.9/css/images/raster.png');
+    background-color: #0078D4; /* Windows 11 default color */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.desktop {
+    flex: 1;
+    padding: 20px;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(1, 80px); /* Single column for vertical alignment */
+    grid-auto-rows: 100px;
+    justify-content: start;
+    gap: 8px;
+    align-items: start;
+    align-content: start;
+}
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.2s;
+    width: 80px;
+}
+
+.desktop-icon:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.desktop-icon.selected {
+    background-color: rgba(0, 120, 215, 0.2);
+}
+
+.desktop-icon svg, .desktop-icon img {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 6px;
+}
+
+.desktop-icon span {
+    font-size: 12px;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.taskbar {
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent */
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center taskbar icons */
+    padding: 0 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.taskbar-center {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.taskbar-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+.taskbar-icon.active::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    width: 6px;
+    height: 6px;
+    background-color: #0078D4;
+    border-radius: 50%;
+}
+
+.taskbar-right {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 16px;
+    bottom: 8px; /* Ensures it sits correctly in the taskbar */
+}
+
+.taskbar-date-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}
+
+.taskbar-time {
+    font-size: 16px; /* Larger font for the time */
+    font-weight: bold;
+}
+
+.taskbar-date {
+    font-size: 12px;
+    opacity: 0.8; /* Adds the subtle faded effect */
+}
+
+.taskbar-icons {
+    display: flex;
+    gap: 8px;
+}
+
+.taskbar-icon:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.taskbar-icon.active {
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 -2px 0 var(--primary-color);
+}
+
+/* New style for minimized windows in taskbar */
+.taskbar-icon.minimized {
+    opacity: 0.8;
+    box-shadow: inset 0 -2px 0 rgba(0, 120, 215, 0.3);
+}
+
+.taskbar-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.start-menu {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 500px;
+    background-color: var(--menu-bg);
+    backdrop-filter: blur(30px);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1000;
+}
+
+.start-menu.active {
+    display: flex;
+}
+
+.search-bar {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.search-bar input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    padding: 4px 8px;
+}
+
+.pinned-apps {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+}
+
+.app-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.app-icon:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.app-icon svg {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 6px;
+}
+
+.app-icon span {
+    font-size: 12px;
+    text-align: center;
+}
+
+.window {
+    position: absolute;
+    width: 700px;
+    height: 450px;
+    background-color: var(--card-bg);
+    backdrop-filter: blur(30px);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    /* transition: transform 0.3s, opacity 0.3s; */
+    transition: all 0.3s ease-in-out; /* Added transition for smooth animations */
+
+}
+
+.window.minimized {
+    transform: translate(-50%, 200%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.window.maximized {
+    width: 100%;
+    height: calc(100% - 48px);
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    border-radius: 0;
+}
+
+.window-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.window-title {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.window-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.window-control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.minimize {
+    background-color: #FFB900;
+}
+
+.maximize {
+    background-color: #00CA4E;
+}
+
+.close {
+    background-color: #FF605C;
+}
+
+.window-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+/* File Explorer Window Styles */
+.window-content {
+    flex: 1;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Explorer Toolbar */
+.explorer-toolbar {
+    display: flex;
+    padding: 4px 8px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    align-items: center;
+    gap: 8px;
+}
+
+.explorer-toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.toolbar-button {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.toolbar-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.toolbar-button svg {
+    width: 16px;
+    height: 16px;
+    color: #555;
+}
+
+.toolbar-dropdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    cursor: pointer;
+}
+
+.explorer-addressbar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: rgba(240, 240, 240, 0.7);
+    border-radius: 4px;
+    padding: 4px 8px;
+    height: 32px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+}
+
+.addressbar-buttons {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #333;
+    font-size: 12px;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+}
+
+.search-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.toolbar-view-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 8px;
+    height: 32px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.toolbar-view-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.toolbar-view-button svg {
+    width: 16px;
+    height: 16px;
+    color: #555;
+}
+
+.dropdown-arrow {
+    font-size: 8px;
+    color: #555;
+}
+
+/* Explorer Ribbon */
+.explorer-ribbon {
+    display: flex;
+    gap: 4px;
+    padding: 0 12px;
+    background-color: rgba(240, 240, 240, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ribbon-tab {
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #555;
+}
+
+.ribbon-tab.active {
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.explorer-ribbon-content {
+    display: flex;
+    gap: 16px;
+    padding: 4px 12px;
+    background-color: rgba(240, 240, 240, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ribbon-group {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding-right: 16px;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.ribbon-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    width: 48px;
+    font-size: 11px;
+    color: #333;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.ribbon-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.ribbon-button svg {
+    width: 16px;
+    height: 16px;
+    margin-bottom: 2px;
+    color: #555;
+}
+
+/* Explorer Container */
+.explorer-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.explorer-sidebar {
+    width: 200px;
+    background-color: rgba(240, 240, 240, 0.5);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.sidebar-section {
+    margin-bottom: 16px;
+}
+
+.sidebar-header {
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #555;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    color: #333;
+    cursor: pointer;
+}
+
+.sidebar-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-item.active {
+    background-color: rgba(0, 120, 215, 0.1);
+}
+
+.sidebar-item svg {
+    width: 16px;
+    height: 16px;
+    color: #555;
+}
+
+/* Explorer Content */
+.explorer-content {
+    flex: 1;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.content-header {
+    display: flex;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
+    position: sticky;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.header-column {
+    cursor: pointer;
+}
+
+.header-column.name {
+    flex: 2;
+}
+
+.header-column.date,
+.header-column.type,
+.header-column.size {
+    flex: 1;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.file-item:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.file-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.file-icon.folder {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFC107' stroke='%23E69500' stroke-width='0.5'%3E%3Cpath d='M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z'/%3E%3C/svg%3E");
+}
+
+.file-icon.doc {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232B579A' stroke='none'%3E%3Cpath d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-3 14H8v-2h8v2zm0-4H8v-2h8v2zm0-4H8V7h8v2z'/%3E%3C/svg%3E");
+}
+
+.file-icon.excel {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23217346' stroke='none'%3E%3Cpath d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-3.5 14H14l-2-3-2 3H8.5l3-4.5L8.5 8H10l2 3 2-3h1.5l-3 4.5 3 4.5z'/%3E%3C/svg%3E");
+}
+
+.file-icon.pdf {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F44336' stroke='none'%3E%3Cpath d='M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z'/%3E%3C/svg%3E");
+}
+
+.file-icon.image {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234CAF50' stroke='none'%3E%3Cpath d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'/%3E%3C/svg%3E");
+}
+
+.file-details {
+    flex: 1;
+    display: flex;
+    font-size: 12px;
+    color: #333;
+}
+
+.file-name {
+    flex: 2;
+}
+
+.file-date,
+.file-type,
+.file-size {
+    flex: 1;
+}
+
+/* Explorer Statusbar */
+.explorer-statusbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 16px;
+    background-color: rgba(240, 240, 240, 0.8);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 11px;
+    color: #555;
+}
+
+/* Microsoft Edge Browser Window */
+/* Microsoft Edge Browser */
+.browser-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Toolbar (Address bar + buttons) */
+.browser-toolbar {
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.browser-toolbar button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.browser-toolbar button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.browser-toolbar input {
+    flex: 1;
+    padding: 6px;
+    margin: 0 6px;
+    border-radius: 4px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.browser-toolbar input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Style for Edge browser window */
+#edgeBrowser {
+    width: 800px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

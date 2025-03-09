@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 11 Inspired Website</title>
+  </head>
+  <link href="styles.css" rel="stylesheet"/>
+  <body>
+    <div class="desktop" id="desktop">
+      <!-- Desktop Icons -->
+      <div class="desktop-icon" onclick="toggleSelect(this)">
+	<svg viewBox="0 0 24 24" fill="none" stroke="#fafafa" stroke-width="2">
+          <path d="M3 6l6 6v10l6-3v-7l6-6V3l-6 3-6-3-6 3v3z" />
+          <path d="M9 3v7M15 6v7" />
+	</svg>
+	<span>Recycle Bin</span>
+      </div>
+      
+      <div class="desktop-icon" onclick="toggleSelect(this); openEdgeBrowser();">
+	<svg viewBox="0 0 24 24" fill="#fafafa" stroke="#fafafa">
+          <rect x="2" y="2" width="20" height="20" rx="2" />
+          <path d="M12 2v20M2 12h20" stroke="#0078d7" stroke-width="2" />
+	</svg>
+	<span>Microsoft Edge</span>
+      </div>
+      
+      <div class="desktop-icon" onclick="toggleSelect(this); openFileExplorer()">
+	<svg viewBox="0 0 24 24" fill="none" stroke="#fafafa" stroke-width="2">
+          <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
+	</svg>
+	<span>Documents</span>
+      </div>
+      
+      <div class="desktop-icon" onclick="toggleSelect(this)">
+	<svg viewBox="0 0 24 24" fill="none" stroke="#fafafa" stroke-width="2">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <rect x="8" y="11" width="8" height="5" />
+          <path d="M6 20v2M18 20v2" />
+	</svg>
+	<span>This PC</span>
+      </div>
+      
+      <div class="desktop-icon" onclick="toggleSelect(this)">
+	<svg viewBox="0 0 24 24" fill="none" stroke="#fafafa" stroke-width="2">
+          <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+	</svg>
+	<span>Settings</span>
+      </div>
+      
+      <!-- Windows will appear here -->
+      <div class="window" id="fileExplorer">
+	<div class="window-header">
+          <div class="window-title">File Explorer</div>
+          <div class="window-controls">
+            <div class="window-control minimize" onclick="minimizeWindow('fileExplorer')"></div>
+            <div class="window-control maximize" onclick="maximizeWindow('fileExplorer')"></div>
+            <div class="window-control close" onclick="closeWindow('fileExplorer')"></div>
+          </div>
+	</div>
+	<div class="window-content">
+	  <!-- File Explorer Window -->
+	  <div class="window" id="fileExplorer">
+	    <div class="window-header">
+	      <div class="window-title">File Explorer</div>
+	      <div class="window-controls">
+		<div class="window-control minimize" onclick="minimizeWindow('fileExplorer')"></div>
+		<div class="window-control maximize" onclick="maximizeWindow('fileExplorer')"></div>
+		<div class="window-control close" onclick="closeWindow('fileExplorer')"></div>
+	      </div>
+	    </div>
+	    <div class="explorer-toolbar">
+	      <div class="explorer-toolbar-group">
+		<div class="toolbar-button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></div>
+		<div class="toolbar-button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+		<div class="toolbar-button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path d="M9 22V12h6v10"/></svg></div>
+		<div class="toolbar-dropdown">
+		  <span>▼</span>
+		</div>
+	      </div>
+	      <div class="explorer-addressbar">
+		<div class="addressbar-buttons">
+		  <span>This PC</span>
+		  <span>&gt;</span>
+		  <span>Documents</span>
+		</div>
+		<div class="search-icon">
+		  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+		</div>
+	      </div>
+	      <div class="explorer-toolbar-group">
+		<div class="toolbar-button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+		<div class="toolbar-view-button">
+		  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+		  <span>View</span>
+		  <span class="dropdown-arrow">▼</span>
+		</div>
+	      </div>
+	    </div>
+	    <div class="explorer-ribbon">
+	      <div class="ribbon-tab active">Home</div>
+	      <div class="ribbon-tab">View</div>
+	      <div class="ribbon-tab">Manage</div>
+	    </div>
+	    <div class="explorer-ribbon-content">
+	      <div class="ribbon-group">
+		<div class="ribbon-button">
+		  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+		  <span>New</span>
+		</div>
+		<div class="ribbon-button">
+		  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+		  <span>Cut</span>
+		</div>
+		<div class="ribbon-button">
+		  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+		  <span>Copy</span>
+		</div>
+		<div class="ribbon-button">
+		  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+		  <span>Paste</span>
+		</div>
+	      </div>
+	      <div class="ribbon-group">
+		<div class="ribbon-button">
+		  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+		  <span>Move to</span>
+		</div>
+		<div class="ribbon-button">
+		  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+		  <span>Delete</span>
+		</div>
+		<div class="ribbon-button">
+		  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16m-8-8h16"/></svg>
+		  <span>Rename</span>
+		</div>
+	      </div>
+	    </div>
+	    <div class="explorer-container">
+	      <div class="explorer-sidebar">
+		<div class="sidebar-section">
+		  <div class="sidebar-header">Quick access</div>
+		  <div class="sidebar-item active">
+		    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>
+		    <span>Desktop</span>
+		  </div>
+		  <div class="sidebar-item">
+		    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h16a2 2 0 002-2V8a2 2 0 00-2-2h-7.93a2 2 0 01-1.66-.9l-.82-1.2A2 2 0 0014.93 3H9.07a2 2 0 00-1.66.9l-.82 1.2A2 2 0 015.93 6H4a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+		    <span>Downloads</span>
+		  </div>
+		  <div class="sidebar-item">
+		    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+		    <span>Documents</span>
+		  </div>
+		  <div class="sidebar-item">
+		    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+		    <span>Pictures</span>
+		  </div>
+		</div>
+		<div class="sidebar-section">
+		  <div class="sidebar-header">This PC</div>
+		  <div class="sidebar-item">
+		    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 17H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-4"/><path d="M9 17l3 3 3-3"/></svg>
+		    <span>Desktop</span>
+		  </div>
+		  <div class="sidebar-item">
+		    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+		    <span>Documents</span>
+		  </div>
+		  <div class="sidebar-item">
+		    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20h16a2 2 0 002-2V8a2 2 0 00-2-2h-7.93a2 2 0 01-1.66-.9l-.82-1.2A2 2 0 0014.93 3H9.07a2 2 0 00-1.66.9l-.82 1.2A2 2 0 015.93 6H4a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+		    <span>Downloads</span>
+		  </div>
+		  <div class="sidebar-item">
+		    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+		    <span>Pictures</span>
+		  </div>
+		  <div class="sidebar-item">
+		    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+		    <span>Music</span>
+		  </div>
+		  <div class="sidebar-item">
+		    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+		    <span>Videos</span>
+		  </div>
+		</div>
+	      </div>
+	      <div class="explorer-content">
+		<div class="content-header">
+		  <div class="header-column name">Name</div>
+		  <div class="header-column date">Date modified</div>
+		  <div class="header-column type">Type</div>
+		  <div class="header-column size">Size</div>
+		</div>
+		<div class="file-item">
+		  <div class="file-icon folder"></div>
+		  <div class="file-details">
+		    <div class="file-name">Documents</div>
+		    <div class="file-date">3/5/2025 2:30 PM</div>
+		    <div class="file-type">File folder</div>
+		    <div class="file-size"></div>
+		  </div>
+		</div>
+		<div class="file-item">
+		  <div class="file-icon folder"></div>
+		  <div class="file-details">
+		    <div class="file-name">Pictures</div>
+		    <div class="file-date">3/2/2025 10:15 AM</div>
+		    <div class="file-type">File folder</div>
+		    <div class="file-size"></div>
+		  </div>
+		</div>
+		<div class="file-item">
+		  <div class="file-icon doc"></div>
+		  <div class="file-details">
+		    <div class="file-name">Project Report.docx</div>
+		    <div class="file-date">3/8/2025 11:42 AM</div>
+		    <div class="file-type">Microsoft Word Document</div>
+		    <div class="file-size">245 KB</div>
+		  </div>
+		</div>
+		<div class="file-item">
+		  <div class="file-icon excel"></div>
+		  <div class="file-details">
+		    <div class="file-name">Budget 2025.xlsx</div>
+		    <div class="file-date">3/7/2025 9:22 AM</div>
+		    <div class="file-type">Microsoft Excel Worksheet</div>
+		    <div class="file-size">1.2 MB</div>
+		  </div>
+		</div>
+		<div class="file-item">
+		  <div class="file-icon pdf"></div>
+		  <div class="file-details">
+		    <div class="file-name">Contract.pdf</div>
+		    <div class="file-date">3/1/2025 3:45 PM</div>
+		    <div class="file-type">PDF Document</div>
+		    <div class="file-size">3.5 MB</div>
+		  </div>
+		</div>
+		<div class="file-item">
+		  <div class="file-icon image"></div>
+		  <div class="file-details">
+		    <div class="file-name">Vacation Photo.jpg</div>
+		    <div class="file-date">2/15/2025 5:30 PM</div>
+		    <div class="file-type">JPEG image</div>
+		    <div class="file-size">2.4 MB</div>
+		  </div>
+		</div>
+	      </div>
+	    </div>
+	    <div class="explorer-statusbar">
+	      <div class="status-count">6 items</div>
+	      <div class="status-size">Available free space: 256.4 GB</div>
+	    </div>
+	  </div>
+
+	</div>
+      </div>
+      
+      <!-- Start Menu (initially hidden) -->
+      <div class="start-menu" id="startMenu">
+	<div class="search-bar">
+          <input type="text" placeholder="Type here to search">
+	</div>
+	<div class="pinned-apps">
+          <!-- App Icons -->
+          <div class="app-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="2" />
+              <path d="M12 2v20M2 12h20" />
+            </svg>
+            <span>Edge</span>
+          </div>
+          <div class="app-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+            </svg>
+            <span>OneDrive</span>
+          </div>
+          <div class="app-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 8v8M8 12h8" />
+            </svg>
+            <span>Store</span>
+          </div>
+          <div class="app-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M3 9h18M9 21V9" />
+            </svg>
+            <span>Calendar</span>
+          </div>
+          <div class="app-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 5H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2z" />
+              <path d="M16 10a2 2 0 100-4 2 2 0 000 4z" />
+              <path d="M22 15.54L16 12l-4 3-8-6" />
+            </svg>
+            <span>Photos</span>
+          </div>
+          <div class="app-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z" />
+            </svg>
+            <span>Calendar</span>
+          </div>
+          <!-- More app icons can be added here -->
+	</div>
+      </div>
+    </div>
+    
+    <div class="taskbar">
+      <div class="taskbar-center">
+	<div class="taskbar-icons">
+          <div class="taskbar-icon" id="startButton">
+            <svg viewBox="0 0 16 16" fill="currentColor">
+              <path d="M0,0L0,7.5L7.5,7.5L7.5,0L0,0z M8.5,0L8.5,7.5L16,7.5L16,0L8.5,0z M0,8.5L0,16L7.5,16L7.5,8.5L0,8.5z M8.5,8.5L8.5,16L16,16L16,8.5L8.5,8.5z" />
+            </svg>
+          </div>
+          <div class="taskbar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+              <path d="M9 22V12h6v10" />
+            </svg>
+          </div>
+          <div class="taskbar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="2" />
+              <path d="M12 2v20M2 12h20" />
+            </svg>
+          </div>
+          <!-- File Explorer Icon in Taskbar -->
+          <div class="taskbar-icon" id="fileExplorerTaskbarIcon" onclick="toggleWindow('fileExplorer')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
+            </svg>
+          </div>
+          <div class="taskbar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <path d="M22 6l-10 7L2 6" />
+            </svg>
+          </div>
+	</div>
+      </div>
+      
+      <div class="taskbar-right">
+	<div class="taskbar-date-time">
+          <div class="taskbar-time" id="taskbarTime">3:09 PM</div>
+          <div class="taskbar-date" id="taskbarDate">3/9/2025</div>
+	</div>
+      </div>
+    </div>
+    <script src="script.js" ></script>
+  </body>
+</html>
