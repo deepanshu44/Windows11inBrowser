@@ -2,6 +2,8 @@
 
 **WebWin11** is a web-based project that emulates the Windows 11 operating system experience right in your browser. This project, powered entirely by generative AI, aims to provide users with an interactive and authentic Windows 11 interface, complete with a taskbar, window transitions, and more.
 
+Note: This project is a work in progress and may have some incomplete features.
+
 ## Features
 
 - **Windows 11 Taskbar:** Fully functional taskbar with pinned applications, system tray, and clock.
