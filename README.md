@@ -1,6 +1,6 @@
-# WebWin11: Windows 11 Browser Emulator
+# Windows11inBrowser: Windows 11 Browser Emulator
 
-**WebWin11** is a web-based project that emulates the Windows 11 operating system experience right in your browser. This project, powered entirely by generative AI, aims to provide users with an interactive and authentic Windows 11 interface, complete with a taskbar, window transitions, and more.
+**Windows11inBrowser** is a web-based project that emulates the Windows 11 operating system experience right in your browser. This project, powered entirely by generative AI, aims to provide users with an interactive and authentic Windows 11 interface, complete with a taskbar, window transitions, and more.
 
 Note: This project is a work in progress and may have some incomplete features.
 
