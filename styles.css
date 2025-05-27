@@ -213,6 +213,7 @@ body {
     flex: 1;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 81px;
     gap: 12px;
 }
 
